@@ -13,6 +13,13 @@ def incrementer(number):
 
 @app.route('/<string:name>/')
 def print_name(name):
+    print(f"Request data: {request.data}")
+    print(f"Parsed URL parameters: {request.args}")
+    print(f"Form parameters: {request.form}")
+    print(f"Combination args and form: {request.values}")
+    print(f"All uploaded files: {request.files}")
+    print(f"Authorization header: {request.authorization}")
+    print(request.path)
     return f"Your name is: {name}"
 
 # Examples jsonify
@@ -52,8 +59,10 @@ def before():
 # After request
 @app.after_request
 def after(response):
-    print(f"This is executed after each request, example: status code = {response.status_code}")
+    print(f"This is executed after each request, example: status code = {response.status_code}, status = {response.status}")
+    print(f"Response data: {response.data}")
     return response
+
 
 
 if __name__ == "__main__":
