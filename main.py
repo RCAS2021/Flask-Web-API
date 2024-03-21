@@ -24,5 +24,18 @@ def jsonify_person():
 def jsonify_list(number):
     return jsonify(list(range(number)))
 
+# Examples of automatic redirecting
+# Will not redirect if it has the trailing slash "/"
+# In this app, it will treat it as a normal string,
+# calling the print_name method
+@app.route('/redirect')
+def redirect():
+    return "Will not redirect"
+
+# Will redirect if there isn't the trailing slash "/"
+@app.route('/will_redirect/')
+def will_redirect():
+    return "Redirected"
+
 if __name__ == "__main__":
     app.run()
