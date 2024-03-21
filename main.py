@@ -1,7 +1,12 @@
 from flask import Flask, jsonify, request
 import werkzeug
+from blueprints import home
+from blueprints import contact
 
 app = Flask(__name__)
+
+app.register_blueprint(home.home_bp, url_prefix='/home')
+app.register_blueprint(contact.contact_bp, url_prefix='/contact')
 
 @app.route('/homepage/', methods=["GET", "POST"])
 def homepage():
