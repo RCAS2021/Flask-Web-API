@@ -37,5 +37,9 @@ def redirect():
 def will_redirect():
     return "Redirected"
 
+# Status code examples
+@app.route('/status_code/')
+def status_code():
+    return "The status code has changed from the default 200 to 418 (I'm a teapot)", 418
 if __name__ == "__main__":
     app.run()
