@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request
+import werkzeug
 
 app = Flask(__name__)
 
@@ -15,6 +16,8 @@ def incrementer(number):
 def print_name(name):
     print(f"Request data: {request.data}")
     print(f"Parsed URL parameters: {request.args}")
+    # This will return an unsupported media type error if not application/json
+    print(f"Parsed json if mimetype = application/json: {request.json}")
     print(f"Form parameters: {request.form}")
     print(f"Combination args and form: {request.values}")
     print(f"All uploaded files: {request.files}")
@@ -62,6 +65,12 @@ def after(response):
     print(f"This is executed after each request, example: status code = {response.status_code}, status = {response.status}")
     print(f"Response data: {response.data}")
     return response
+
+# Error handler example
+@app.errorhandler(werkzeug.exceptions.UnsupportedMediaType)
+def handle_unsupported_media_type(e):
+    return "There was an error with the media type!"
+
 
 if __name__ == "__main__":
     # debug = True, server will reload when code changes
