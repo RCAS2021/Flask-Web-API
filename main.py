@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
@@ -41,5 +41,20 @@ def will_redirect():
 @app.route('/status_code/')
 def status_code():
     return "The status code has changed from the default 200 to 418 (I'm a teapot)", 418
+
+# Examples request
+
+# Before request
+@app.before_request
+def before():
+    print("This is executed before each request")
+
+# After request
+@app.after_request
+def after(response):
+    print(f"This is executed after each request, example: status code = {response.status_code}")
+    return response
+
+
 if __name__ == "__main__":
     app.run()
