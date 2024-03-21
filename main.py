@@ -98,4 +98,4 @@ if __name__ == "__main__":
     # SSL Context for the connection, used to host the flask application on https instead of http
     #app.run(ssl_context='adhoc')
 
-    app.run()
+    #app.run()
