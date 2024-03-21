@@ -62,6 +62,11 @@ def status_code():
 # Before request
 @app.before_request
 def before():
+    # Pylint false-positive on method logger has no 'debug/info/warning/error' member
+    app.logger.debug('This is a DEBUG message')
+    app.logger.info('This is an INFO message')
+    app.logger.warning('This is a WARNING message')
+    app.logger.error('This is an ERROR message')
     print("This is executed before each request")
 
 # After request
@@ -79,7 +84,7 @@ def handle_unsupported_media_type(e):
 
 if __name__ == "__main__":
     # debug = True, server will reload when code changes
-    #app.run(debug=True)
+    app.run(debug=True)
 
     # use_reloader = True, servr will restart when code changes
     #app.run(use_reloader=True)
