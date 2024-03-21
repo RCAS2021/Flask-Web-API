@@ -63,7 +63,20 @@ def after(response):
     print(f"Response data: {response.data}")
     return response
 
-
-
 if __name__ == "__main__":
+    # debug = True, server will reload when code changes
+    #app.run(debug=True)
+
+    # use_reloader = True, servr will restart when code changes
+    #app.run(use_reloader=True)
+
+    # threaded = True, the process will handle each request in a separated thead
+    #app.run(threaded=True)
+
+    # ssl_context = ssl.SSLContext, a tuple in the form(cert_file, key_file),
+    # or 'adhoc' if the server should create automatically the context,
+    # Requires criptography library
+    # SSL Context for the connection, used to host the flask application on https instead of http
+    #app.run(ssl_context='adhoc')
+
     app.run()
